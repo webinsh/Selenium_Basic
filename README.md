@@ -5,7 +5,7 @@
 ### GIT
 [see wiki for Create-a-branch](https://github.com/KristineK/selenium_java_basic/wiki/Create-a-branch)
 
-[see wiki for Git-add-commit-pust](https://github.com/KristineK/selenium_java_basic/wiki/Git-add-commit-pust)
+[see wiki for Git-add-commit-push](https://github.com/KristineK/selenium_java_basic/wiki/Git-add-commit-pust)
 
 ---
 ### Feedback
