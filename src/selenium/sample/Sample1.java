@@ -1,10 +1,10 @@
 package selenium.sample;
 
-
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import selenium.ChangeToFileExtension;
 
 import java.io.File;
 
@@ -14,7 +14,7 @@ public class Sample1 {
     @Test
     public void goToHomepage() throws Exception {
         //define driver
-        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new selenium.ChangeToFileExtension().extension());
+        System.setProperty("webdriver.chrome.driver", libWithDriversLocation + "chromedriver" + new ChangeToFileExtension().extension());
         WebDriver driver = new ChromeDriver();
 
         //open test homepage
