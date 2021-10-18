@@ -52,7 +52,7 @@ public class Sample2Task {
     public void findElementByClassFirst() throws Exception {
 //         TODO:
 //         get first text of class "test" (should be "Test Text 1")
-        List<WebElement> testElements = driver.findElements(By.cssSelector(".test"));
+        List<WebElement> testElements = driver.findElements(By.className("test"));
         System.out.println("First text: " + testElements.get(0).getText());
     }
 
@@ -62,9 +62,9 @@ public class Sample2Task {
 //         get size text of class "test" (should be 5)
 //         get text of class "test"
 //         get third text of class "test" (should be "Test Text 4")
-        List<WebElement> testElements = driver.findElements(By.cssSelector(".test"));
+        List<WebElement> testElements = driver.findElements(By.className("test"));
         System.out.println("Sizeof array: " + testElements.size());
-        System.out.println("Third text: " + testElements.get(3).getText());
+        System.out.println("Third text: " + testElements.get(2).getText());
 
     }
 }
