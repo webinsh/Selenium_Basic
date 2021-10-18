@@ -1,5 +1,3 @@
-package selenium;
-
 public class ChangeToFileExtension {
 
     public String extension() {
