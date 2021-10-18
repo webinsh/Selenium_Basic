@@ -1,3 +1,5 @@
+Raitis Barkāns Selenium tasks
+
 ### Setup 
 [see wiki](https://github.com/KristineK/selenium_java_basic/wiki/Setup)
 
