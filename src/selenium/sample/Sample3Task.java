@@ -68,7 +68,7 @@ public class Sample3Task {
 //        contain number 190
         List<WebElement> elements = driver.findElements(By.className("test"));
         for (WebElement element : elements) {
-            if (element.getText().equals("190")) {
+            if (element.getText().contains("190")) {
                 fail();
             }
         }
