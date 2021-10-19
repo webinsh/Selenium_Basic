@@ -37,7 +37,7 @@ public class Task1 {
     // scripts.js 75-76 line
     //else if (x == 'bug') {
     //        text = "Yes, this form has 6 <i>features</i>, which some people call <i>bugs</i> you just found 1";
-    
+
     @Before
     public void openPage() {
 
@@ -134,6 +134,7 @@ public class Task1 {
         int squareRootWithoutRemainder = 64;
         String expectedAnswer = "Square root of 64 is 8.00";
         WebElement inputField = driver.findElement(By.cssSelector(inputFieldSelector));
+        WebElement error = driver.findElement(By.cssSelector(expectedErrorSelector));
         WebElement submit = driver.findElement(By.cssSelector(submitSelector));
 
         inputField.sendKeys(Integer.toString(squareRootWithoutRemainder));
@@ -141,7 +142,10 @@ public class Task1 {
         submit.click();
         Alert alert = driver.switchTo().alert();
         assertEquals(assertFailMessage,expectedAnswer,alert.getText());
+
         alert.accept();
+
+        assertEquals(assertFailMessage,"",error.getText());
     }
 
     @Test
@@ -153,6 +157,7 @@ public class Task1 {
         String expectedAnswer = "Square root of 60 is 7.75";
         WebElement inputField = driver.findElement(By.cssSelector(inputFieldSelector));
         WebElement submit = driver.findElement(By.cssSelector(submitSelector));
+        WebElement error = driver.findElement(By.cssSelector(expectedErrorSelector));
 
         inputField.sendKeys(Integer.toString(squareRootWithRemainder));
 
@@ -160,5 +165,6 @@ public class Task1 {
         Alert alert = driver.switchTo().alert();
         assertEquals(assertFailMessage,expectedAnswer,alert.getText());
         alert.accept();
+        assertEquals(assertFailMessage,"",error.getText());
     }
 }
