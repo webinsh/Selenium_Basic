@@ -64,7 +64,7 @@ public class Sample4Task {
                     assertFalse("Result text was displayed",resultText.isDisplayed());
                     WebElement resultButton = driver.findElement(By.cssSelector(resultButtonSelector));
                     resultButton.click();
-                    assertEquals(resultText.getText(), "You entered number: \"" + Integer.toString(inputNumber) + "\"");
+                    assertEquals("You entered number: \"" + Integer.toString(inputNumber) + "\"",resultText.getText());
                     assertTrue("Clear result button was not clickable",clearResult.isEnabled());
                     clearResult.click();
                     assertTrue("Result text does not equal nothing",resultText.getText().equals(""));
@@ -91,6 +91,6 @@ public class Sample4Task {
         WebElement homepageLink = driver.findElement(By.cssSelector(homepageLinkSelector));
         homepageLink.click();
         assertFalse("Base url has not been changed",driver.getCurrentUrl().equals(base_url));
-        assertEquals("Url was different, but not a homepage",driver.getCurrentUrl(),homepage);
+        assertEquals("Url was different, but not a homepage",homepage,driver.getCurrentUrl());
     }
 }

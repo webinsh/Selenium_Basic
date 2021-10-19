@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
@@ -43,6 +44,17 @@ public class Sample5Task {
 //        verify alert text
 //        click ok on second alert
 //        verify that the correct page is opened
+        String alertedPage = "https://kristinek.github.io/site/examples/alerted_page";
+        WebElement goToAlertSelector = driver.findElement(By.cssSelector(".w3-blue"));
+        goToAlertSelector.click();
+        Thread.sleep(2000);
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        Thread.sleep(2000);
+        alert = driver.switchTo().alert();
+        alert.accept();
+        Thread.sleep(2000);
+        assertEquals("Alerted page is wrong",alertedPage,driver.getCurrentUrl());
     }
 
     @Test
@@ -52,5 +64,14 @@ public class Sample5Task {
 //        switch to alert
 //        click cancel
 //        verify the text on page
+        String refusedAlertSelector = "#textForAlerts";
+        String refusedAlertText = "So you desided to say? Good!";
+        String goToAlertSelector = ".w3-blue";
+        WebElement goToAlert = driver.findElement(By.cssSelector(goToAlertSelector));
+        goToAlert.click();
+        Alert alert = driver.switchTo().alert();
+        alert.dismiss();
+        WebElement refusedAlert = driver.findElement(By.cssSelector(refusedAlertSelector));
+        assertEquals("Message on refused alert was different",refusedAlertText,refusedAlert.getText());
     }
 }
