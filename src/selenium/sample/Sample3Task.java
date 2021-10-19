@@ -50,7 +50,12 @@ public class Sample3Task {
 //         check that it is True that value of second button is
 //         "this is Also a Button" if you ignore Caps Locks
 //         fail with custom error message:
-        assertTrue(driver.findElement(By.cssSelector("#buttonId")).getAttribute("value").equals("this is Also a Button"));
+        try{
+            assertTrue("Button text is wrong",driver.findElement(By.cssSelector("#buttonId")).getAttribute("value").equals("this is Also a Button"));
+        }
+        catch(AssertionError e){
+            e.printStackTrace();
+        }
     }
 
     @Test
