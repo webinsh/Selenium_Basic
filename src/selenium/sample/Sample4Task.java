@@ -46,7 +46,36 @@ public class Sample4Task {
 //        check that the button "Clear Result" is clickable now
 //        click on "Clear Result"
 //        check that the text is still (""), but it is not displayed
-    }
+        int inputNumber = 32123123;
+        String clearResultButtonSelector = "#clear_result_button_number";
+        String resultNumberSelector = "#result_number";
+        String numberSelector = "#number";
+        String resultButtonSelector = "#result_button_number";
+
+            assertTrue("Base url is not the same, as driver url", driver.getCurrentUrl().equals(base_url));
+            WebElement number = driver.findElement(By.cssSelector(numberSelector));
+            if (number != null) {
+                number.clear();
+                number.sendKeys(Integer.toString(inputNumber));
+                WebElement clearResult = driver.findElement(By.cssSelector(clearResultButtonSelector));
+                if (clearResult != null) {
+                    assertFalse("Clear result button was enabled", clearResult.isEnabled());
+                    WebElement resultText = driver.findElement(By.cssSelector(resultNumberSelector));
+                    assertFalse("Result text was displayed",resultText.isDisplayed());
+                    WebElement resultButton = driver.findElement(By.cssSelector(resultButtonSelector));
+                    resultButton.click();
+                    assertEquals(resultText.getText(), "You entered number: \"" + Integer.toString(inputNumber) + "\"");
+                    assertTrue("Clear result button was not clickable",clearResult.isEnabled());
+                    clearResult.click();
+                    assertTrue("Result text does not equal nothing",resultText.getText().equals(""));
+                    assertFalse("Result text was displayed", resultText.isDisplayed());
+                } else {
+                    fail("ClearResult is null");
+                }
+            } else {
+                fail("Number is null");
+            }
+        }
 
     @Test
     public void clickOnLink() throws Exception {
@@ -55,5 +84,13 @@ public class Sample4Task {
 //        click on "This is a link to Homepage"
 //        check that current url is not base_url
 //        verify that current url is homepage
+        String homepageLinkSelector = "#homepage_link";
+        String homepage = "https://kristinek.github.io/site/";
+
+        assertTrue("Base url is different from driver's url",driver.getCurrentUrl().equals(base_url));
+        WebElement homepageLink = driver.findElement(By.cssSelector(homepageLinkSelector));
+        homepageLink.click();
+        assertFalse("Base url has not been changed",driver.getCurrentUrl().equals(base_url));
+        assertEquals("Url was different, but not a homepage",driver.getCurrentUrl(),homepage);
     }
 }
