@@ -4,7 +4,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,8 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class Sample9Task {
     WebDriver driver;
@@ -40,6 +41,27 @@ public class Sample9Task {
 //         * 3) check that both button
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
+        String greenButtonSelector = "#start_green";
+        String loadingGreenSelector = "#loading_green";
+        String finishGreenSelector = "#finish_green";
+
+        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver,10).ignoring(StaleElementReferenceException.class);
+
+        Thread.sleep(4000);
+        WebElement greenButton = driver.findElement(By.cssSelector(greenButtonSelector));
+        greenButton.click();
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(greenButtonSelector)));
+        Thread.sleep(4000);
+        assertFalse("Button was visible",greenButton.isDisplayed());
+        WebElement loadingGreen = driver.findElement(By.cssSelector(loadingGreenSelector));
+        assertTrue("Loading green was not visible",loadingGreen.isDisplayed());
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#finish_green")));
+        Thread.sleep(10000);
+        assertFalse("Loading screen was visible",loadingGreen.isDisplayed());
+
+        WebElement finishGreen = driver.findElement(By.cssSelector(finishGreenSelector));
+        assertTrue("Finishing green loading screen was not present",finishGreen.isDisplayed());
+        assertEquals("Message was different","Green Loaded",finishGreen.getText());
     }
 
     @Test
@@ -51,6 +73,30 @@ public class Sample9Task {
 //         * 3) check that both button
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
+
+        String greenButtonSelector = "#start_green";
+        String loadingGreenSelector = "#loading_green";
+        String finishGreenSelector = "#finish_green";
+
+        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver,10).ignoring(StaleElementReferenceException.class);
+
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        WebElement greenButton = driver.findElement(By.cssSelector(greenButtonSelector));
+        greenButton.click();
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(greenButtonSelector)));
+        //Thread.sleep(1000);
+        WebElement loadingGreen = driver.findElement(By.cssSelector(loadingGreenSelector));
+        assertFalse("Button was visible",greenButton.isDisplayed());
+
+        assertTrue("Loading green was not visible",loadingGreen.isDisplayed());
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#finish_green")));
+        //Thread.sleep(10000);
+        WebElement finishGreen = driver.findElement(By.cssSelector(finishGreenSelector));
+        assertFalse("Loading screen was visible",loadingGreen.isDisplayed());
+
+
+        assertTrue("Finishing green loading screen was not present",finishGreen.isDisplayed());
+        assertEquals("Message was different","Green Loaded",finishGreen.getText());
     }
 
     @Test
@@ -62,6 +108,26 @@ public class Sample9Task {
 //         * 3) check that both button
 //         * and loading text is not seen,
 //         * success is seen instead "Green Loaded"
+
+        String greenButtonSelector = "#start_green";
+        String loadingGreenSelector = "#loading_green";
+        String finishGreenSelector = "#finish_green";
+
+        WebDriverWait wait = (WebDriverWait) new WebDriverWait(driver,10).ignoring(StaleElementReferenceException.class);
+        WebElement greenButton = driver.findElement(By.cssSelector(greenButtonSelector));
+        greenButton.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(greenButtonSelector)));
+        //Thread.sleep(1000);
+        assertFalse("Button was visible",greenButton.isDisplayed());
+        WebElement loadingGreen = driver.findElement(By.cssSelector(loadingGreenSelector));
+        assertTrue("Loading green was not visible",loadingGreen.isDisplayed());
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#finish_green")));
+        //Thread.sleep(10000);
+        assertFalse("Loading screen was visible",loadingGreen.isDisplayed());
+
+        WebElement finishGreen = driver.findElement(By.cssSelector(finishGreenSelector));
+        assertTrue("Finishing green loading screen was not present",finishGreen.isDisplayed());
+        assertEquals("Message was different","Green Loaded",finishGreen.getText());
     }
 
     @Test

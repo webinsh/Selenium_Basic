@@ -38,7 +38,6 @@ public class Sample10 {
         agePage.checkThatFormIsClean();
     }
 
-    @Test
     public void checkErrorMessageOnEmptyAge() throws Exception {
         agePage.clickSubmit();
         agePage.checkErrorMessage("You haven't entered anything in age field");
