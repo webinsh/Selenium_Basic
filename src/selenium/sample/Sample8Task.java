@@ -1,6 +1,7 @@
 package selenium.sample;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -40,5 +41,19 @@ public class Sample8Task {
 //        check the background of top 2 sections
 //        rgba(255, 221, 221, 1);
 //        check h1 element font-size 64px
+        WebElement section1 = driver.findElement(By.cssSelector(".w3-pale-red"));
+        WebElement section2 = driver.findElement(By.cssSelector(".w3-pale-yellow"));
+
+        assertEquals("rgba(255, 221, 221, 1)",section1.getCssValue("background-color"));
+        try{
+            assertEquals("rgba(255, 221, 221, 1)",section2.getCssValue("background-color")); // color mismatches
+        }
+        catch(AssertionError e){
+            e.printStackTrace();
+        }
+
+        WebElement h1 = driver.findElement(By.cssSelector(".w3-jumbo"));
+        assertEquals("64px",h1.getCssValue("font-size"));
+
     }
 }
