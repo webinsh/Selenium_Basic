@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AddPersonPage extends GenericSamplePage{
-    @FindBy(how = How.ID,using = "addPersonBtn")
+public class AddPersonPage extends GenericSamplePage {
+    @FindBy(how = How.ID, using = "addPersonBtn")
     private WebElement addPersonButton;
     @FindBy(how = How.CLASS_NAME, using = "name")
     private List<WebElement> personNames;
@@ -34,7 +34,6 @@ public class AddPersonPage extends GenericSamplePage{
     private WebElement statusSelect;
 
 
-
     private String strpersonName = "";
     private String strpersonSurname = "";
     private String strpersonJob = "";
@@ -45,9 +44,10 @@ public class AddPersonPage extends GenericSamplePage{
     private int indexToUpdate = -2;
     private List<List<Object>> persons;
 
-    public void setIndexToUpdate(int index){
+    public void setIndexToUpdate(int index) {
         indexToUpdate = index;
     }
+
     public String getPersonName(int index) {
         return personNames.get(index).getText();
     }
@@ -105,19 +105,19 @@ public class AddPersonPage extends GenericSamplePage{
     }
 
 
-    public void addPersonOpenView(){
+    public void addPersonOpenView() {
         addPersonButton.click();
     }
 
-    public int getLastIndex(){
+    public int getLastIndex() {
         return personNames.size() - 1;
     }
 
-    public void openPersonEdit(int index){
+    public void openPersonEdit(int index) {
         editButtons.get(index).click();
     }
 
-    public void deletePerson(int index){
+    public void deletePerson(int index) {
         deleteButtons.get(index).click();
     }
 }

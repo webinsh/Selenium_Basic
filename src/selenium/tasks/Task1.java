@@ -8,7 +8,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import static org.junit.Assert.*;
+
 import java.io.File;
 
 public class Task1 {
@@ -65,7 +67,7 @@ public class Task1 {
 
         inputField.sendKeys(text);
         submit.click();
-        assertEquals(assertFailMessage,expectedError,error.getText());
+        assertEquals(assertFailMessage, expectedError, error.getText());
     }
 
     @Test
@@ -83,8 +85,7 @@ public class Task1 {
         try {
             assertTrue(assertFailMessage, error.isDisplayed());
             assertEquals(assertFailMessage, expectedError, error.getText());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("49 number is causing a bug, because numbers from 50 to 100 should be accepted");
             // scripts.js 92-93 line
             //else if (x < 49) {
@@ -107,7 +108,7 @@ public class Task1 {
 
         inputField.sendKeys(Integer.toString(numberAbove));
         submit.click();
-        assertEquals(assertFailMessage,expectedError,error.getText());
+        assertEquals(assertFailMessage, expectedError, error.getText());
 
         inputField.clear();
         inputField.sendKeys(Integer.toString(bugNumber));
@@ -115,8 +116,7 @@ public class Task1 {
         try {
             assertTrue(assertFailMessage, error.isDisplayed());
             assertEquals(assertFailMessage, expectedError, error.getText());
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("666 number is an exception in the code, which shows no errors");
             // 80-83 line scripts.js
             // else if (x == 666) {
@@ -141,11 +141,11 @@ public class Task1 {
 
         submit.click();
         Alert alert = driver.switchTo().alert();
-        assertEquals(assertFailMessage,expectedAnswer,alert.getText());
+        assertEquals(assertFailMessage, expectedAnswer, alert.getText());
 
         alert.accept();
 
-        assertEquals(assertFailMessage,"",error.getText());
+        assertEquals(assertFailMessage, "", error.getText());
     }
 
     @Test
@@ -163,8 +163,8 @@ public class Task1 {
 
         submit.click();
         Alert alert = driver.switchTo().alert();
-        assertEquals(assertFailMessage,expectedAnswer,alert.getText());
+        assertEquals(assertFailMessage, expectedAnswer, alert.getText());
         alert.accept();
-        assertEquals(assertFailMessage,"",error.getText());
+        assertEquals(assertFailMessage, "", error.getText());
     }
 }

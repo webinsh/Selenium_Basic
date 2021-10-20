@@ -8,7 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import selenium.pages.AddPersonData;
 import selenium.pages.AddPersonPage;
+
 import static org.junit.Assert.*;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -46,14 +48,14 @@ public class Task3Bonus {
         driver.close();
     }
 
-    public boolean checkIfOtherPersonsChanged(List<List<Object>> l1, List<List<Object>> l2, boolean sizeEqual, int excludedValues){
+    public boolean checkIfOtherPersonsChanged(List<List<Object>> l1, List<List<Object>> l2, boolean sizeEqual, int excludedValues) {
         int deduct = 0;
-        if(!sizeEqual){
+        if (!sizeEqual) {
             deduct = -1;
         }
 
-        if(l1.size() + deduct == l2.size()){
-            for (int i=0;i<l1.size() - 1;i++){
+        if (l1.size() + deduct == l2.size()) {
+            for (int i = 0; i < l1.size() - 1; i++) {
                 if (!new HashSet(l1.get(i)).equals(new HashSet(l2.get(i))) && i != excludedValues) {
                     return false;
                 }
@@ -64,10 +66,10 @@ public class Task3Bonus {
         return true;
     }
 
-    public List<List<Object>> getPersonList(){
-        addPersonPage = PageFactory.initElements(driver,AddPersonPage.class);
+    public List<List<Object>> getPersonList() {
+        addPersonPage = PageFactory.initElements(driver, AddPersonPage.class);
         List<List<Object>> retVal = new ArrayList<>();
-        for(int i=0;i< addPersonPage.getLastIndex() + 1; i++){
+        for (int i = 0; i < addPersonPage.getLastIndex() + 1; i++) {
             List<Object> child = new ArrayList<>();
             child.add(addPersonPage.getPersonName(i));
             child.add(addPersonPage.getPersonSurname(i));
@@ -83,7 +85,7 @@ public class Task3Bonus {
     }
 
     @Test
-    public void addPerson() throws Exception{
+    public void addPerson() throws Exception {
         /* TODO:
          * implement adding new person using page object
          *
@@ -92,16 +94,16 @@ public class Task3Bonus {
          * check the list again, that non of the people where changes, but an additional one with correct name/job was added
          */
 
-        addPersonPage = PageFactory.initElements(driver,AddPersonPage.class);
+        addPersonPage = PageFactory.initElements(driver, AddPersonPage.class);
         Thread.sleep(2000);
         List<List<Object>> persons = getPersonList();
         addPersonPage.addPersonOpenView();
-        addPersonData = PageFactory.initElements(driver,AddPersonData.class);
+        addPersonData = PageFactory.initElements(driver, AddPersonData.class);
         // Add new person
         addPersonData.fillFormWithGenericData();
         addPersonData.submitForm();
 
-        addPersonPage = PageFactory.initElements(driver,AddPersonPage.class);
+        addPersonPage = PageFactory.initElements(driver, AddPersonPage.class);
         int lastIndex = addPersonPage.getLastIndex();
         String name = addPersonPage.getPersonName(lastIndex);
         String surname = addPersonPage.getPersonSurname(lastIndex);
@@ -111,17 +113,17 @@ public class Task3Bonus {
         String employmentStatus = addPersonPage.getPersonEmploymentStatuses(lastIndex);
 
         // Check added person
-        assertEquals(assertFailMessage,addPersonData.name,addPersonPage.getPersonName(lastIndex));
-        assertEquals(assertFailMessage,addPersonData.surname,addPersonPage.getPersonSurname(lastIndex));
-        assertEquals(assertFailMessage,addPersonData.job,addPersonPage.getPersonJob(lastIndex));
-        assertEquals(assertFailMessage,addPersonData.date,addPersonPage.getPersonDate(lastIndex));
-        assertEquals(assertFailMessage,addPersonData.expectedLanguage,addPersonPage.getPersonLanguage(lastIndex));
-        assertEquals(assertFailMessage,addPersonData.employmentStatus,addPersonPage.getPersonEmploymentStatuses(lastIndex));
+        assertEquals(assertFailMessage, addPersonData.name, addPersonPage.getPersonName(lastIndex));
+        assertEquals(assertFailMessage, addPersonData.surname, addPersonPage.getPersonSurname(lastIndex));
+        assertEquals(assertFailMessage, addPersonData.job, addPersonPage.getPersonJob(lastIndex));
+        assertEquals(assertFailMessage, addPersonData.date, addPersonPage.getPersonDate(lastIndex));
+        assertEquals(assertFailMessage, addPersonData.expectedLanguage, addPersonPage.getPersonLanguage(lastIndex));
+        assertEquals(assertFailMessage, addPersonData.employmentStatus, addPersonPage.getPersonEmploymentStatuses(lastIndex));
 
         // Check, if other persons are not modified
 
         List<List<Object>> personsNew = getPersonList();
-        if(!checkIfOtherPersonsChanged(personsNew,persons,false,-2)){
+        if (!checkIfOtherPersonsChanged(personsNew, persons, false, -2)) {
             fail("Other persons have been modified");
         }
     }
@@ -135,16 +137,16 @@ public class Task3Bonus {
          * edit one of existing persons via the edit link
          * check the list again and that 2 people stayed the same and the one used was changed
          */
-        addPersonPage = PageFactory.initElements(driver,AddPersonPage.class);
+        addPersonPage = PageFactory.initElements(driver, AddPersonPage.class);
         Thread.sleep(2000);
         List<List<Object>> persons = getPersonList();
         addPersonPage.openPersonEdit(0);
 
-        addPersonData = PageFactory.initElements(driver,AddPersonData.class);
+        addPersonData = PageFactory.initElements(driver, AddPersonData.class);
         addPersonData.updatePersonWithGenericData(true);
 
         List<List<Object>> newPersons = getPersonList();
-        if(!checkIfOtherPersonsChanged(newPersons,persons,true,0)){
+        if (!checkIfOtherPersonsChanged(newPersons, persons, true, 0)) {
             fail("Other persons were modified");
         }
 
@@ -160,16 +162,16 @@ public class Task3Bonus {
          * check the list again and that no changes where made
          */
 
-        addPersonPage = PageFactory.initElements(driver,AddPersonPage.class);
+        addPersonPage = PageFactory.initElements(driver, AddPersonPage.class);
         Thread.sleep(2000);
         List<List<Object>> persons = getPersonList();
         addPersonPage.openPersonEdit(0);
 
-        addPersonData = PageFactory.initElements(driver,AddPersonData.class);
+        addPersonData = PageFactory.initElements(driver, AddPersonData.class);
         addPersonData.updatePersonWithGenericData(false);
 
         List<List<Object>> newPersons = getPersonList();
-        if(!checkIfOtherPersonsChanged(newPersons,persons,true,-2)){
+        if (!checkIfOtherPersonsChanged(newPersons, persons, true, -2)) {
             fail("Persons was modified");
         }
     }
@@ -183,17 +185,17 @@ public class Task3Bonus {
          * in order: store the list of people and jobs currently on page
          * delete 1 person see that there are now 2 people in the table with correct data
          */
-        addPersonPage = PageFactory.initElements(driver,AddPersonPage.class);
+        addPersonPage = PageFactory.initElements(driver, AddPersonPage.class);
         Thread.sleep(2000);
         List<List<Object>> persons = getPersonList();
         addPersonPage.deletePerson(0);
         Thread.sleep(2000);
         List<List<Object>> newPersons = getPersonList();
 
-        if(newPersons.size() != 2){
+        if (newPersons.size() != 2) {
             fail("Person was not deleted");
         }
-        if(!persons.containsAll(newPersons)){
+        if (!persons.containsAll(newPersons)) {
             fail("Person was not deleted");
         }
 
@@ -208,18 +210,18 @@ public class Task3Bonus {
          * in order: store the list of people and jobs currently on page
          * delete all people and check that there is no no table on page, but the button Add is still present and working
          */
-        addPersonPage = PageFactory.initElements(driver,AddPersonPage.class);
+        addPersonPage = PageFactory.initElements(driver, AddPersonPage.class);
         Thread.sleep(2000);
         List<List<Object>> persons = getPersonList();
-        if(persons.get(0).size() == 0){
+        if (persons.get(0).size() == 0) {
             fail("There are no initial persons");
         }
-        for(int i=0;i<persons.size();i++){
+        for (int i = 0; i < persons.size(); i++) {
             addPersonPage.deletePerson(0);
         }
         Thread.sleep(2000);
         List<List<Object>> newPersons = getPersonList();
-        if(newPersons.size() != 0){
+        if (newPersons.size() != 0) {
             fail("Not all persons was deleted");
         }
     }

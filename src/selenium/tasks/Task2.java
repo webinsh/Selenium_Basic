@@ -105,7 +105,7 @@ public class Task2 {
         afterFeedbackPage = PageFactory.initElements(driver, AfterFeedbackPage.class);
         afterFeedbackPage.SubmitYes();
         WebElement message = driver.findElement(By.cssSelector("#message"));
-        assertEquals(afterFeedbackPage.fieldValueError,"Thank you, Raitis, for your feedback!",message.getText());
+        assertEquals(afterFeedbackPage.fieldValueError, "Thank you, Raitis, for your feedback!", message.getText());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class Task2 {
         afterFeedbackPage = PageFactory.initElements(driver, AfterFeedbackPage.class);
         afterFeedbackPage.SubmitYes();
         WebElement message = driver.findElement(By.cssSelector("#message"));
-        assertEquals(afterFeedbackPage.fieldValueError,"Thank you for your feedback!",message.getText());
+        assertEquals(afterFeedbackPage.fieldValueError, "Thank you for your feedback!", message.getText());
     }
 
     @Test
@@ -141,13 +141,13 @@ public class Task2 {
         //feedbackPage = PageFactory.initElements(driver, FeedbackPage.class);
 
         feedbackPage = PageFactory.initElements(driver, FeedbackPage.class);
-
-        assertEquals(afterFeedbackPage.fieldValueError,feedbackPage.name,feedbackPage.getNameInput());
-        assertEquals(afterFeedbackPage.fieldValueError,feedbackPage.age,feedbackPage.getAgeInput());
-        assertEquals(afterFeedbackPage.fieldValueError,feedbackPage.language1,feedbackPage.getLanguages().get(0));
-        assertEquals(afterFeedbackPage.fieldValueError,feedbackPage.language2,feedbackPage.getLanguages().get(1));
-        assertEquals(afterFeedbackPage.fieldValueError,feedbackPage.gender,feedbackPage.getGenders());
-        assertEquals(afterFeedbackPage.fieldValueError,feedbackPage.howDoYouLikeUsVal,feedbackPage.getHowDoYouLikeUs());
-        assertEquals(afterFeedbackPage.fieldValueError,feedbackPage.comment,feedbackPage.getCommentInput());
+        Thread.sleep(2000);
+        assertEquals(afterFeedbackPage.fieldValueError, feedbackPage.name, feedbackPage.getNameInput());
+        assertEquals(afterFeedbackPage.fieldValueError, feedbackPage.age, feedbackPage.getAgeInput());
+        assertEquals(afterFeedbackPage.fieldValueError, feedbackPage.language1, feedbackPage.getLanguages().get(0));
+        assertEquals(afterFeedbackPage.fieldValueError, feedbackPage.language2, feedbackPage.getLanguages().get(1));
+        assertEquals(afterFeedbackPage.fieldValueError, feedbackPage.gender, feedbackPage.getGenders());
+        assertEquals(afterFeedbackPage.fieldValueError, feedbackPage.howDoYouLikeUsVal, feedbackPage.getHowDoYouLikeUs());
+        assertEquals(afterFeedbackPage.fieldValueError, feedbackPage.comment, feedbackPage.getCommentInput());
     }
 }

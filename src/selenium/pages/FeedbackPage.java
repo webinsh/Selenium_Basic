@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FeedbackPage extends GenericSamplePage{
+public class FeedbackPage extends GenericSamplePage {
     public String emptyAssertError = "Field was not empty";
     public String name = "Raitis", age = "21", language1 = "English", language2 = "French", gender = "male",
             howDoYouLikeUsVal = "Ok, i guess", comment = "Cool task, let's see, if app will handle this comment!",
@@ -32,9 +32,10 @@ public class FeedbackPage extends GenericSamplePage{
     public FeedbackPage() {
     }
 
-    public void submitForm(){
+    public void submitForm() {
         submitButton.click();
     }
+
     public String getNameInput() {
         return nameInput.getText();
     }
@@ -53,8 +54,8 @@ public class FeedbackPage extends GenericSamplePage{
 
     public List<String> getLanguages() {
         List<String> retVal = new ArrayList<String>();
-        for(WebElement element : this.languages){
-            if(element.isSelected()){
+        for (WebElement element : this.languages) {
+            if (element.isSelected()) {
                 retVal.add(element.getAttribute("value"));
             }
         }
@@ -62,16 +63,16 @@ public class FeedbackPage extends GenericSamplePage{
     }
 
     public void setLanguages(String languageName) {
-        for(WebElement element : this.languages){
-            if(element.getAttribute("value").equals(languageName)){
+        for (WebElement element : this.languages) {
+            if (element.getAttribute("value").equals(languageName)) {
                 element.click();
             }
         }
     }
 
     public String getGenders() {
-        for(WebElement element : this.genders){
-            if(element.isSelected()){
+        for (WebElement element : this.genders) {
+            if (element.isSelected()) {
                 return element.getAttribute("value");
             }
         }
@@ -79,8 +80,8 @@ public class FeedbackPage extends GenericSamplePage{
     }
 
     public void setGenders(String gender) {
-        for (WebElement element : this.genders){
-            if(element.getAttribute("value").equals(gender)){
+        for (WebElement element : this.genders) {
+            if (element.getAttribute("value").equals(gender)) {
                 element.click();
             }
         }
@@ -104,7 +105,7 @@ public class FeedbackPage extends GenericSamplePage{
         this.commentInput.sendKeys(commentInput);
     }
 
-    public void fillFormWithGenericData(){
+    public void fillFormWithGenericData() {
         setNameInput(name);
         setAgeInput(age);
         setLanguages(language1);
