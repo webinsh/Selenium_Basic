@@ -37,7 +37,7 @@ public class FeedbackPage extends GenericSamplePage {
     }
 
     public String getNameInput() {
-        return nameInput.getText();
+        return nameInput.getAttribute("value");
     }
 
     public void setNameInput(String nameInput) {
@@ -45,7 +45,7 @@ public class FeedbackPage extends GenericSamplePage {
     }
 
     public String getAgeInput() {
-        return ageInput.getText();
+        return ageInput.getAttribute("value");
     }
 
     public void setAgeInput(String ageInput) {
@@ -89,7 +89,7 @@ public class FeedbackPage extends GenericSamplePage {
 
     public String getHowDoYouLikeUs() {
         Select howDoYouLikeUs = new Select(this.howDoYouLikeUs);
-        return howDoYouLikeUs.getFirstSelectedOption().getText();
+        return howDoYouLikeUs.getFirstSelectedOption().getAttribute("value");
     }
 
     public void setHowDoYouLikeUs(String value) {
@@ -98,7 +98,7 @@ public class FeedbackPage extends GenericSamplePage {
     }
 
     public String getCommentInput() {
-        return commentInput.getText();
+        return commentInput.getAttribute("value");
     }
 
     public void setCommentInput(String commentInput) {
